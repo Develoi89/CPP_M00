@@ -20,8 +20,32 @@ Contact::Contact(std::string FirstName, std::string LastName, std::string PhoneN
     return;
 }
 
+int ShowField( std::string Str)
+{
+    int i;
+    int l = Str.size();
+    if (l <= 10)
+    {
+        std::cout << "\x1b[32m|\x1b[37m" << Str;
+        for (l = l - 10; l < 0; l++)
+            std::cout << " ";
+    }
+    else
+    {
+        std::cout << "\x1b[32m|\x1b[37m";
+        for (i = 0; i <= 8; i++)
+            std::cout << Str[i];
+        std::cout << ".";
+    }
+    return 0;
+}
 int Contact::ShowIt(void)
 {
-    std::cout << Contact::FirstName << "|" << Contact::LastName << "|" << Contact::PhoneNumber << "|" << Contact::DarkestSecret << "|" << std::endl;
+    ShowField(Contact::FirstName);
+    ShowField(Contact::LastName);
+    ShowField(Contact::PhoneNumber);
+    ShowField(Contact::DarkestSecret);
+    std::cout << "\x1b[32m|\x1b[37m";
+    std::cout << std::endl;
     return 0;
 }

@@ -30,11 +30,21 @@ void PhoneBook::addfc(void)
 void PhoneBook::srchfc(void)
 {
     int i;
-    std::cout << " Id | First Name | Last Name | Phone Number | Darkest Secret |" << std::endl;
-    for (i = 0; i <= this->i; i++)
+    std::cout << "\x1b[32m ________________________________________________ " << std::endl;
+    std::cout << "|       THE BEST PHONEBOOK OF THIS CLUSTER       |" << std::endl;
+    std::cout << "|------------------------------------------------|" << std::endl;
+    std::cout << "| Id | 1st Name | Lst Name | PhNumber | DkSecret |" << std::endl;
+    std::cout << "|------------------------------------------------|\x1b[37m" << std::endl;
+    if (this->i == 0)
+        std::cout << "The PhoneBook is empty" << std::endl;
+    else
     {
-        std::cout << i << std::endl;
-        this->contacts[i].Contact::ShowIt();
+        for (i = 0; i <= 7; i++)
+        {
+            std::cout << "\x1b[32m|\x1b[36m _" << i + 1 << " \x1b[36m\x1b[37m";
+            this->contacts[i].Contact::ShowIt();
+            std::cout << "\x1b[32m|------------------------------------------------|\x1b[37m" << std::endl;
+        }
     }
     return;
 }
