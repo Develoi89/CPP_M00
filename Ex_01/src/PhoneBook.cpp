@@ -3,11 +3,6 @@
 
 PhoneBook::PhoneBook(void)
 {
-    std::cout << "\x1b[32mWellcome to the best PhoneBook of this Cluster!!!\x1b[37m" << std::endl;
-    std::cout << "Now, tell me what do you need?"  << std::endl;
-    std::cout << "\x1b[32mADD\x1b[37m, to add a new contact."  << std::endl;
-    std::cout << "\x1b[32mSEARCH\x1b[37m, to see all contacts and show details of one of them."  << std::endl;
-    std::cout << "\x1b[32mEXIT\x1b[37m, to close and finish the best PhoneBook."  << std::endl;
     return;
 }
 PhoneBook::~PhoneBook(void)
@@ -17,12 +12,29 @@ PhoneBook::~PhoneBook(void)
 
 void PhoneBook::addfc(void)
 {
-    std::cout << "building addfc" << std::endl;
+    if (this->i == 8)
+        this->i = 0;
+    std::string FirstName;
+    std::string LastName;
+    std::string PhoneNumber;
+    std::string DarkestSecret;
+    std::getline (std::cin, FirstName);
+    std::getline (std::cin, LastName);
+    std::getline (std::cin, PhoneNumber);
+    std::getline (std::cin, DarkestSecret);
+    this->contacts[this->i] = Contact(FirstName, LastName, PhoneNumber, DarkestSecret);
+    this->i++;
     return;
 }
 
 void PhoneBook::srchfc(void)
 {
-    std::cout << "building srchfc" << std::endl;
+    int i;
+    std::cout << " Id | First Name | Last Name | Phone Number | Darkest Secret |" << std::endl;
+    for (i = 0; i <= this->i; i++)
+    {
+        std::cout << i << std::endl;
+        this->contacts[i].Contact::ShowIt();
+    }
     return;
 }

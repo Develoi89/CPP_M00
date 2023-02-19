@@ -19,3 +19,9 @@ Contact::Contact(std::string FirstName, std::string LastName, std::string PhoneN
     Contact::DarkestSecret = DarkestSecret;
     return;
 }
+
+int Contact::ShowIt(void)
+{
+    std::cout << Contact::FirstName << "|" << Contact::LastName << "|" << Contact::PhoneNumber << "|" << Contact::DarkestSecret << "|" << std::endl;
+    return 0;
+}
