@@ -3,7 +3,7 @@
 
 int main(void)
 {
-    PhoneBook PhoneBook;
+    PhoneBook phoneBook;
     std::string command;
     while (42)
     {
@@ -14,9 +14,9 @@ int main(void)
         std::cout << "\x1b[32mEXIT\x1b[37m, to close and finish the best PhoneBook."  << std::endl;
         std::getline (std::cin, command);
         if (command == "ADD")
-            PhoneBook.addfc();
+            phoneBook.addfc();
         else if (command == "SEARCH")
-            PhoneBook.srchfc();
+            phoneBook.srchfc();
         else if (command == "EXIT")
             break;
     }

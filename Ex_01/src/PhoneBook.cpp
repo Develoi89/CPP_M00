@@ -66,10 +66,15 @@ void PhoneBook::srchfc(void)
         for (i = 0; i <= 7; i++)
         {
             std::cout << "\x1b[32m|\x1b[36m _" << i + 1 << " \x1b[37m";
-            this->contacts[i].Contact::ShowIt();
+            this->contacts[i].ShowIt();
             std::cout << "\x1b[32m|------------------------------------------------|\x1b[37m" << std::endl;
         }
     }
+    std::stringstream tmp;
+    std::string ss;
+    std::getline(std::cin, ss);
+    tmp << ss;
+    tmp >> i;
 
     return;
 }

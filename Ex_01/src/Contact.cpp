@@ -41,10 +41,10 @@ int ShowField( std::string Str)
 }
 int Contact::ShowIt(void)
 {
-    ShowField(Contact::FirstName);
-    ShowField(Contact::LastName);
-    ShowField(Contact::PhoneNumber);
-    ShowField(Contact::DarkestSecret);
+    ShowField(FirstName);
+    ShowField(LastName);
+    ShowField(PhoneNumber);
+    ShowField(DarkestSecret);
     std::cout << "\x1b[32m|\x1b[37m";
     std::cout << std::endl;
     return 0;
