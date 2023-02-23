@@ -39,6 +39,7 @@ int ShowField( std::string Str)
     }
     return 0;
 }
+
 int Contact::ShowIt(void)
 {
     ShowField(FirstName);

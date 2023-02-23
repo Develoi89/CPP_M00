@@ -11,6 +11,16 @@ PhoneBook::~PhoneBook(void)
     return;
 }
 
+std::string DelSpaces(std::string Str)
+{
+    int l = Str.find_first_not_of(" ");
+    if (l > 0)
+        Str.erase(0, l - 1);
+    else
+        return Str;
+    return Str;
+}
+
 void PhoneBook::addfc(void)
 {
     std::string Answer;
@@ -19,33 +29,52 @@ void PhoneBook::addfc(void)
     std::string PhoneNumber;
     std::string DarkestSecret;
     std::cout << "\x1b[36mPlease, type the first name:\x1b[37m" << std::endl;
-    std::getline (std::cin, FirstName);
+    if(std::getline (std::cin, FirstName) && FirstName.size() > 0)
+        FirstName = DelSpaces(FirstName);
+    else
+        return;
     std::cout << "\x1b[36mNow, type the last name:\x1b[37m" << std::endl;
-    std::getline (std::cin, LastName);
+    while(LastName.size() <= 0)
+    {
+        if(std::getline (std::cin, LastName) && LastName.size() > 0)
+            LastName = DelSpaces(LastName);
+        else if(LastName.size() <= 0)
+            std::cout << "\033[1;31mPlease, complete the field.\x1b[37m" << std::endl;
+        else
+            return;
+    }
     std::cout << "\x1b[36mHis phone:\x1b[37m" << std::endl;
-    std::getline (std::cin, PhoneNumber);
+    if(std::getline (std::cin, PhoneNumber) && PhoneNumber.size() > 0)
+        PhoneNumber = DelSpaces(PhoneNumber);
+    else
+        return;
     std::cout << "\x1b[36mAnd finally his darkest secret...:\x1b[37m" << std::endl;
-    std::getline (std::cin, DarkestSecret);
+    if(std::getline (std::cin, DarkestSecret) && DarkestSecret.size() > 0)
+        DarkestSecret = DelSpaces(DarkestSecret);
+    else
+        return;
     if (this->i == 8)
     {
         std::cout << "\033[1;31mWARNING, ACHTUNG,ATENTIE LA PERICOL, OH LA LA, CUIDADINI!!!, EH CUIDAO AHI!!!\x1b[37m" << std::endl;
         std::cout << "\x1b[36mThe PhoneBook is full, the oldest contact will be deleted, are you sure?" << std::endl;
         std::cout << "Type \033[1;32m(YES)\x1b[37m \x1b[36mor \033[1;32m(NO)\x1b[37m" << std::endl;
-        std::getline (std::cin, Answer);
-        while (this->i == 8)
-        {
-            if (Answer == "YES")
+        if(std::getline (std::cin, Answer))
+            while (this->i == 8)
             {
-                this->i = 0;
+                if (Answer == "YES")
+                {
+                    this->i = 0;
+                }
+                else if (Answer == "NO")
+                    return;
+                else
+                {
+                    std::cout << "\x1b[36mPlease, type only \033[1;32m(YES)\x1b[37m \x1b[36mor \033[1;32m(NO)\x1b[37m:" << std::endl;
+                    std::getline (std::cin, Answer);
+                }
             }
-            else if (Answer == "NO")
-                return;
-            else
-            {
-                std::cout << "\x1b[36mPlease, type only \033[1;32m(YES)\x1b[37m \x1b[36mor \033[1;32m(NO)\x1b[37m:" << std::endl;
-                std::getline (std::cin, Answer);
-            }
-        }
+        else
+            return;
     }
     this->contacts[this->i] = Contact(FirstName, LastName, PhoneNumber, DarkestSecret);
     this->i++;
