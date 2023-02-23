@@ -49,3 +49,16 @@ int Contact::ShowIt(void)
     std::cout << std::endl;
     return 0;
 }
+
+int Contact::CompleteField(void)
+{
+    std::cout << "\x1b[36mFirst Name:\x1b[37m" << std::endl;
+    std::cout << FirstName << std::endl;
+    std::cout << "\x1b[36mLast Name:\x1b[37m" << std::endl;
+    std::cout << LastName << std::endl;
+    std::cout << "\x1b[36mPhone Number:\x1b[37m" << std::endl;
+    std::cout << PhoneNumber << std::endl;
+    std::cout << "\x1b[36mDarkest Secret:\x1b[37m" << std::endl;
+    std::cout << DarkestSecret << std::endl;
+    return 0;
+}

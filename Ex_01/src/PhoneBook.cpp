@@ -3,6 +3,7 @@
 
 PhoneBook::PhoneBook(void)
 {
+    i = 0;
     return;
 }
 PhoneBook::~PhoneBook(void)
@@ -53,28 +54,41 @@ void PhoneBook::addfc(void)
 
 void PhoneBook::srchfc(void)
 {
-    int i;
+    int l;
     std::cout << "\x1b[32m ________________________________________________ " << std::endl;
     std::cout << "|       THE BEST PHONEBOOK OF THIS CLUSTER       |" << std::endl;
     std::cout << "|------------------------------------------------|" << std::endl;
     std::cout << "| Id | 1st Name | Lst Name | PhNumber | DkSecret |" << std::endl;
     std::cout << "|------------------------------------------------|\x1b[37m" << std::endl;
     if (this->i == 0)
-        std::cout << "The PhoneBook is empty" << std::endl;
+    {
+        std::cout << "\033[1;31mThe PhoneBook is empty\x1b[37m" << std::endl;
+        return;
+    }
     else
     {
-        for (i = 0; i <= 7; i++)
+        for (l = 0; l <= 7; l++)
         {
-            std::cout << "\x1b[32m|\x1b[36m _" << i + 1 << " \x1b[37m";
-            this->contacts[i].ShowIt();
+            std::cout << "\x1b[32m|\x1b[36m _" << l + 1 << " \x1b[37m";
+            this->contacts[l].ShowIt();
             std::cout << "\x1b[32m|------------------------------------------------|\x1b[37m" << std::endl;
         }
     }
-    std::stringstream tmp;
-    std::string ss;
-    std::getline(std::cin, ss);
-    tmp << ss;
-    tmp >> i;
-
+    while(42)
+    {
+        std::cout << "\x1b[36mPlease, choose an ID:\x1b[37m" << std::endl;
+        std::stringstream tmp;
+        std::string ss;
+        std::getline(std::cin, ss);
+        tmp << ss;
+        tmp >> l;
+        if (l > this->i || l < 1)
+            std::cout << "\033[1;31mPlease type a valid ID.\x1b[37m" << std::endl;
+        else   
+        {
+            this->contacts[l - 1].CompleteField();
+            return;
+        }
+    }
     return;
 }
