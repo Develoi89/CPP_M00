@@ -1,4 +1,5 @@
 #include "../headers/PhoneBook.hpp"
+#include "../headers/Utils.hpp"
 #include <iostream>
 
 int main(void)
@@ -14,10 +15,17 @@ int main(void)
         std::cout << "\x1b[32mEXIT\x1b[37m, to close and finish the best PhoneBook."  << std::endl;
         if(std::getline(std::cin, command))
         {
+            command = DelSpaces(command);
             if (command == "ADD")
-                phoneBook.addfc();
+            {
+                if (phoneBook.addfc() == 1)
+                    break;
+            }
             else if (command == "SEARCH")
-                phoneBook.srchfc();
+            {
+                if (phoneBook.srchfc() == 1)
+                    break;
+            }
             else if (command == "EXIT")
                 break;
         }

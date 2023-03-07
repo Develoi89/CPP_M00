@@ -13,8 +13,8 @@ private:
 public:
     PhoneBook();
     ~PhoneBook();
-    void addfc();
-    void srchfc() const;
+    int addfc();
+    int srchfc() const;
 };
 
 #endif

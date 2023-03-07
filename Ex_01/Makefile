@@ -3,9 +3,11 @@ NAME		=	phonebook
 
 SRC			=	src/main.cpp \
 				src/Contact.cpp \
+				src/Utils.cpp\
 				src/PhoneBook.cpp
 
 HDS			=	headers/Contact.hpp \
+				headers/Utils.hpp\
 				headers/PhoneBook.hpp		
 
 OBJ			=	$(SRC:.cpp=.o)

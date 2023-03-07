@@ -1,4 +1,5 @@
 #include "../headers/PhoneBook.hpp"
+#include "../headers/Utils.hpp"
 #include <iostream>
 
 PhoneBook::PhoneBook(void)
@@ -10,16 +11,6 @@ PhoneBook::PhoneBook(void)
 PhoneBook::~PhoneBook(void)
 {
     return;
-}
-
-std::string DelSpaces(std::string Str)
-{
-    int l = Str.find_first_not_of(" ");
-    if (l > 0)
-        Str.erase(0, l - 1);
-    else
-        return Str;
-    return Str;
 }
 
 std::string saveit(void)
@@ -40,7 +31,7 @@ std::string saveit(void)
     return str;
 }
 
-void PhoneBook::addfc(void)
+int PhoneBook::addfc(void)
 {
     std::string Answer;
     std::string FirstName;
@@ -49,18 +40,18 @@ void PhoneBook::addfc(void)
     std::string DarkestSecret;
     std::cout << "\x1b[36mPlease, type the first name:\x1b[37m" << std::endl;
     if ((FirstName = saveit()).size() <= 0)
-        return;
+        return 1;
     std::cout << "\x1b[36mNow, type the last name:\x1b[37m" << std::endl;
     if ((LastName = saveit()).size() <= 0)
-        return;
+        return 1;
     std::cout << "\x1b[36mHis phone:\x1b[37m" << std::endl;
     if ((PhoneNumber = saveit()).size() <= 0)
-        return;
+        return 1;
     std::cout << "\x1b[36mAnd finally his darkest secret...:\x1b[37m" << std::endl;
     if(std::getline (std::cin, DarkestSecret))
         DarkestSecret = DelSpaces(DarkestSecret);
     else
-        return;
+        return 1;
     if (this->i == 8)
     {
         std::cout << "\033[1;31mWARNING, ACHTUNG,ATENTIE LA PERICOL, OH LA LA, CUIDADINI!!!, EH CUIDAO AHI!!!\x1b[37m" << std::endl;
@@ -72,7 +63,7 @@ void PhoneBook::addfc(void)
                 if (Answer == "YES")
                     this->i = 0;
                 else if (Answer == "NO")
-                    return;
+                    return 0;
                 else
                 {
                     std::cout << "\x1b[36mPlease, type only \033[1;32m(YES)\x1b[37m \x1b[36mor \033[1;32m(NO)\x1b[37m:" << std::endl;
@@ -80,16 +71,16 @@ void PhoneBook::addfc(void)
                 }
             }
         else
-            return;
+            return 1;
     }
     this->contacts[this->i] = Contact(FirstName, LastName, PhoneNumber, DarkestSecret);
     this->i++;
     if(this->m < 8)
         this->m++;
-    return;
+    return 0;
 }
 
-void PhoneBook::srchfc(void) const
+int PhoneBook::srchfc(void) const
 {
     int l;
     std::cout << "\x1b[32m ________________________________________________ " << std::endl;
@@ -100,7 +91,7 @@ void PhoneBook::srchfc(void) const
     if (this->m == 0)
     {
         std::cout << "\033[1;31mThe PhoneBook is empty\x1b[37m" << std::endl;
-        return;
+        return 0;
     }
     else
     {
@@ -123,14 +114,14 @@ void PhoneBook::srchfc(void) const
             tmp >> l;
         }
         else
-            return;
+            return 1;
         if (l > this->m || l < 1)
             std::cout << "\033[1;31mPlease type a valid ID.\x1b[37m" << std::endl;
         else   
         {
             this->contacts[l - 1].CompleteField();
-            return;
+            return 0;
         }
     }
-    return;
+    return 0;
 }
