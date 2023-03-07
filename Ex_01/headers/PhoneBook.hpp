@@ -9,11 +9,12 @@ class PhoneBook
 private:
     Contact contacts[8];
     int     i;
+    int     m;
 public:
     PhoneBook();
     ~PhoneBook();
     void addfc();
-    void srchfc();
+    void srchfc() const;
 };
 
 #endif

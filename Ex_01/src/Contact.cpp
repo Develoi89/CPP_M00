@@ -40,7 +40,7 @@ int ShowField( std::string Str)
     return 0;
 }
 
-int Contact::ShowIt(void)
+int Contact::ShowIt(void) const
 {
     ShowField(FirstName);
     ShowField(LastName);
@@ -51,7 +51,7 @@ int Contact::ShowIt(void)
     return 0;
 }
 
-int Contact::CompleteField(void)
+int Contact::CompleteField(void) const
 {
     std::cout << "\x1b[36mFirst Name:\x1b[37m" << std::endl;
     std::cout << FirstName << std::endl;
