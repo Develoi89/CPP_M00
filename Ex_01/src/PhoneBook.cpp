@@ -110,14 +110,21 @@ int PhoneBook::srchfc(void) const
         std::string ss;
         if(std::getline(std::cin, ss))
         {
-            tmp << ss;
-            tmp >> l;
+            if (IsNumeric(ss) == - 1)
+            {
+                tmp << ss;
+                tmp >> l;
+            }
+            else
+                std::cout << "\033[1;31mPlease type a valid ID.\x1b[37m" << std::endl;
         }
         else
             return 1;
-        if (l > this->m || l < 1)
+        if (IsNumeric(ss) >= 0)
+            continue ;
+        else if (l > this->m || l < 1)
             std::cout << "\033[1;31mPlease type a valid ID.\x1b[37m" << std::endl;
-        else   
+        else  
         {
             this->contacts[l - 1].CompleteField();
             return 0;

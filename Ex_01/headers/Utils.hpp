@@ -8,5 +8,6 @@
 #include <iostream>
 
 std::string DelSpaces(std::string Str);
+int IsNumeric(std::string Str);
 
 #endif

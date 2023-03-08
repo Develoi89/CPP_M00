@@ -12,3 +12,9 @@ std::string DelSpaces(std::string Str)
         Str.erase(0, s);
     return Str;
 }
+
+int IsNumeric(std::string Str)
+{
+    int i = Str.find_first_not_of("0987654321");
+    return i;
+}
